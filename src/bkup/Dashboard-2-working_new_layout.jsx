@@ -15,7 +15,6 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from "recharts";
-import { Link } from "react-router-dom";
 
 export default function Dashboard() {
   const cmeData = [
@@ -42,7 +41,7 @@ export default function Dashboard() {
           </button>
         </header>
 
-        {/* Status Cards */}
+        {/* Top Section */}
         <div className="grid md:grid-cols-3 gap-6">
           {/* License Status */}
           <Card>
@@ -52,8 +51,7 @@ export default function Dashboard() {
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-sm text-slate-700 font-medium">Medical License — MA</p>
-              <div className="text-2xl font-semibold mt-1">Active</div>
+              <div className="text-2xl font-semibold">Active</div>
               <p className="text-sm text-slate-600">Renewal May 2026</p>
             </CardContent>
           </Card>
@@ -81,25 +79,6 @@ export default function Dashboard() {
             <CardContent>
               <p className="text-slate-700">State of Massachusetts</p>
               <p className="text-sm text-slate-600">15 CME credits / year</p>
-              <a href="#" className="text-indigo-600 text-sm font-medium mt-2 inline-block">
-                View all
-              </a>
-            </CardContent>
-          </Card>
-
-          {/* Upcoming CMEs */}
-          <Card>
-            <CardHeader>
-              <CardTitle className="flex justify-between">
-                Upcoming CMEs (MA · Mammographer) <span>⚙️ Semi-auto</span>
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <ul className="text-sm text-slate-700 space-y-1">
-                <li>🗓 Harvard CME – Breast Imaging Update · Mar 2025</li>
-                <li>🗓 Mayo Clinic – Mammography Masterclass · Apr 2025</li>
-                <li>🗓 Radiology Society of MA – Annual CME · Jun 2025</li>
-              </ul>
               <a href="#" className="text-indigo-600 text-sm font-medium mt-2 inline-block">
                 View all
               </a>
@@ -133,9 +112,6 @@ export default function Dashboard() {
                   <Bar dataKey="completed" fill="#6366f1" name="Completed" />
                 </BarChart>
               </ResponsiveContainer>
-              <div className="text-center text-sm text-slate-600 mt-1">
-                CME Progress for 2025
-              </div>
               <div className="flex justify-center mt-2 text-sm text-slate-600">
                 <span className="flex items-center mr-4">
                   <span className="inline-block w-3 h-3 bg-gray-300 mr-2 rounded-sm" /> Required
@@ -155,11 +131,10 @@ export default function Dashboard() {
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <ul className="text-sm text-slate-700 space-y-1">
-                <li>American College of Radiology – Exp. Apr 2025 • $500</li>
-                <li>Radiological Society of North America – Exp. Jan 2026 • $400</li>
-                <li>Massachusetts Radiology Society – Exp. Sep 2025 • $250</li>
-              </ul>
+              <p>The American College of Radiology</p>
+              <p className="text-sm text-slate-600">
+                Expiration: Apr 2025 • Annual dues: $500
+              </p>
               <a href="#" className="text-indigo-600 text-sm font-medium mt-2 inline-block">
                 View all
               </a>
@@ -222,12 +197,6 @@ export default function Dashboard() {
             </CardContent>
           </Card>
         </div>
-
-        {/* Footer Links */}
-        <footer className="border-t pt-6 mt-10 text-sm text-slate-600 flex justify-between">
-          <Link to="/" className="hover:text-indigo-600">← Homepage</Link>
-          <Link to="/profile" className="hover:text-indigo-600">Your Profile →</Link>
-        </footer>
       </div>
     </div>
   );

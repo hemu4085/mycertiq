@@ -7,6 +7,15 @@ import {
   CardContent,
 } from "../components/ui/card";
 import {
+  ShieldCheck,
+  BarChart2,
+  ClipboardCheck,
+  DollarSign,
+  FileText,
+  Layers,
+  Settings,
+} from "lucide-react";
+import {
   BarChart,
   Bar,
   XAxis,
@@ -15,7 +24,6 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from "recharts";
-import { Link } from "react-router-dom";
 
 export default function Dashboard() {
   const cmeData = [
@@ -42,9 +50,8 @@ export default function Dashboard() {
           </button>
         </header>
 
-        {/* Status Cards */}
+        {/* Top Cards */}
         <div className="grid md:grid-cols-3 gap-6">
-          {/* License Status */}
           <Card>
             <CardHeader>
               <CardTitle className="flex justify-between">
@@ -52,13 +59,11 @@ export default function Dashboard() {
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-sm text-slate-700 font-medium">Medical License — MA</p>
-              <div className="text-2xl font-semibold mt-1">Active</div>
+              <div className="text-2xl font-semibold">Active</div>
               <p className="text-sm text-slate-600">Renewal May 2026</p>
             </CardContent>
           </Card>
 
-          {/* MQSA Compliance */}
           <Card>
             <CardHeader>
               <CardTitle className="flex justify-between">
@@ -71,7 +76,6 @@ export default function Dashboard() {
             </CardContent>
           </Card>
 
-          {/* Required CMEs */}
           <Card>
             <CardHeader>
               <CardTitle className="flex justify-between">
@@ -81,35 +85,12 @@ export default function Dashboard() {
             <CardContent>
               <p className="text-slate-700">State of Massachusetts</p>
               <p className="text-sm text-slate-600">15 CME credits / year</p>
-              <a href="#" className="text-indigo-600 text-sm font-medium mt-2 inline-block">
-                View all
-              </a>
-            </CardContent>
-          </Card>
-
-          {/* Upcoming CMEs */}
-          <Card>
-            <CardHeader>
-              <CardTitle className="flex justify-between">
-                Upcoming CMEs (MA · Mammographer) <span>⚙️ Semi-auto</span>
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <ul className="text-sm text-slate-700 space-y-1">
-                <li>🗓 Harvard CME – Breast Imaging Update · Mar 2025</li>
-                <li>🗓 Mayo Clinic – Mammography Masterclass · Apr 2025</li>
-                <li>🗓 Radiology Society of MA – Annual CME · Jun 2025</li>
-              </ul>
-              <a href="#" className="text-indigo-600 text-sm font-medium mt-2 inline-block">
-                View all
-              </a>
             </CardContent>
           </Card>
         </div>
 
-        {/* Middle Section */}
+        {/* Middle Row */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {/* CME Progress */}
           <Card className="lg:col-span-1 md:col-span-2">
             <CardHeader>
               <CardTitle className="flex justify-between">
@@ -117,7 +98,7 @@ export default function Dashboard() {
               </CardTitle>
             </CardHeader>
             <CardContent className="h-72">
-              <ResponsiveContainer width="100%" height="85%">
+              <ResponsiveContainer width="100%" height="100%">
                 <BarChart data={cmeData}>
                   <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
                   <XAxis dataKey="name" tick={{ fill: "#475569" }} />
@@ -133,21 +114,9 @@ export default function Dashboard() {
                   <Bar dataKey="completed" fill="#6366f1" name="Completed" />
                 </BarChart>
               </ResponsiveContainer>
-              <div className="text-center text-sm text-slate-600 mt-1">
-                CME Progress for 2025
-              </div>
-              <div className="flex justify-center mt-2 text-sm text-slate-600">
-                <span className="flex items-center mr-4">
-                  <span className="inline-block w-3 h-3 bg-gray-300 mr-2 rounded-sm" /> Required
-                </span>
-                <span className="flex items-center">
-                  <span className="inline-block w-3 h-3 bg-indigo-500 mr-2 rounded-sm" /> Completed
-                </span>
-              </div>
             </CardContent>
           </Card>
 
-          {/* Medical Societies */}
           <Card>
             <CardHeader>
               <CardTitle className="flex justify-between">
@@ -155,18 +124,13 @@ export default function Dashboard() {
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <ul className="text-sm text-slate-700 space-y-1">
-                <li>American College of Radiology – Exp. Apr 2025 • $500</li>
-                <li>Radiological Society of North America – Exp. Jan 2026 • $400</li>
-                <li>Massachusetts Radiology Society – Exp. Sep 2025 • $250</li>
-              </ul>
-              <a href="#" className="text-indigo-600 text-sm font-medium mt-2 inline-block">
-                View all
-              </a>
+              <p>The American College of Radiology</p>
+              <p className="text-sm text-slate-600">
+                Expiration: Apr 2025 • Annual dues: $500
+              </p>
             </CardContent>
           </Card>
 
-          {/* CME Funding */}
           <Card>
             <CardHeader>
               <CardTitle className="flex justify-between">
@@ -178,13 +142,9 @@ export default function Dashboard() {
               <p className="text-sm text-slate-600">
                 $850 utilized • $1,650 available • Expires Dec 2025
               </p>
-              <a href="#" className="text-indigo-600 text-sm font-medium mt-2 inline-block">
-                View all
-              </a>
             </CardContent>
           </Card>
 
-          {/* Document Vault */}
           <Card>
             <CardHeader>
               <CardTitle className="flex justify-between">
@@ -197,13 +157,9 @@ export default function Dashboard() {
                 <li>License Renewal Form.pdf</li>
                 <li>ACVR Certificate.pdf</li>
               </ul>
-              <a href="#" className="text-indigo-600 text-sm font-medium mt-2 inline-block">
-                View all
-              </a>
             </CardContent>
           </Card>
 
-          {/* Integrated Boards */}
           <Card>
             <CardHeader>
               <CardTitle className="flex justify-between">
@@ -216,18 +172,9 @@ export default function Dashboard() {
                 <li>AMA Physician Masterfile</li>
                 <li>CAQH ProView</li>
               </ul>
-              <a href="#" className="text-indigo-600 text-sm font-medium mt-2 inline-block">
-                View all
-              </a>
             </CardContent>
           </Card>
         </div>
-
-        {/* Footer Links */}
-        <footer className="border-t pt-6 mt-10 text-sm text-slate-600 flex justify-between">
-          <Link to="/" className="hover:text-indigo-600">← Homepage</Link>
-          <Link to="/profile" className="hover:text-indigo-600">Your Profile →</Link>
-        </footer>
       </div>
     </div>
   );
