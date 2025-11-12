@@ -1,0 +1,1 @@
+export function Avatar({className='', children}){return <div className={`h-10 w-10 rounded-full bg-slate-200 grid place-items-center ${className}`}>{children}</div>}; export function AvatarFallback({children}){return <>{children}</>}; export function AvatarImage(){return null;}
