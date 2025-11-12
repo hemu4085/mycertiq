@@ -7,6 +7,15 @@ import {
   CardContent,
 } from "../components/ui/card";
 import {
+  ShieldCheck,
+  BarChart2,
+  ClipboardCheck,
+  DollarSign,
+  FileText,
+  Layers,
+  Settings,
+} from "lucide-react";
+import {
   BarChart,
   Bar,
   XAxis,
@@ -15,97 +24,80 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from "recharts";
-import { ShieldCheck, CalendarCheck, FileCheck2 } from "lucide-react";
-import Topbar from "../components/Topbar"; // ✅ add this line
-
 
 export default function Dashboard() {
-  const profile = {
-    name: "Dr. Asha Verma",
-    specialty: "Internal Medicine",
-    state: "MA",
-    cmeRequired: 50,
-    cmeCompleted: 42,
-  };
-
   const cmeData = [
-    { name: "Internal Med", required: 50, completed: 42 },
-    { name: "Cardiology", required: 40, completed: 34 },
-    { name: "Radiology", required: 30, completed: 28 },
-  ];
-
-  const stats = [
-    {
-      title: "License Status",
-      icon: ShieldCheck,
-      value: "Active",
-      color: "text-emerald-600",
-      sub: "Renewal May 2026",
-    },
-    {
-      title: "CME Hours",
-      icon: CalendarCheck,
-      value: `${profile.cmeCompleted}/${profile.cmeRequired}`,
-      color: "text-indigo-600",
-      sub: "84% complete",
-    },
-    {
-      title: "Compliance Docs",
-      icon: FileCheck2,
-      value: "Up-to-date",
-      color: "text-sky-600",
-      sub: "Audit Mar 2025",
-    },
+    { name: "Breast Ultrasound", required: 15, completed: 12 },
+    { name: "Mammogram Review", required: 20, completed: 18 },
+    { name: "MRI Interpretation", required: 25, completed: 21 },
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-white py-12 px-6">
-      <Topbar />  {/* ✅ added */}
-      <div className="max-w-7xl mx-auto space-y-12">
+    <div className="min-h-screen bg-white text-slate-900 p-10">
+      <div className="max-w-7xl mx-auto space-y-8">
         {/* Header */}
-        <header className="space-y-2 text-center md:text-left">
-          <h1 className="text-3xl font-semibold text-slate-900">
-            Welcome back,{" "}
-            <span className="text-indigo-700">{profile.name}</span>
-          </h1>
-          <p className="text-slate-600">
-            {profile.specialty} · Licensed in {profile.state}
-          </p>
+        <header className="flex justify-between items-center">
+          <div>
+            <h1 className="text-3xl font-semibold">
+              Welcome back, <span className="text-indigo-700">Dr. Asha Verma</span>
+            </h1>
+            <p className="text-slate-600 mt-1">
+              Mammography / Breast Imaging • Licensed in MA
+            </p>
+          </div>
+          <button className="px-4 py-2 bg-indigo-600 text-white rounded-lg text-sm font-medium shadow hover:bg-indigo-700">
+            Alert Settings
+          </button>
         </header>
 
-        {/* Section 1: Overview Stats */}
-        <section className="space-y-6">
-          <h2 className="text-lg font-semibold text-slate-800 border-b border-slate-200 pb-1">
-            Compliance Overview
-          </h2>
-          <div className="grid md:grid-cols-3 gap-6">
-            {stats.map((s) => (
-              <Card
-                key={s.title}
-                className="shadow-sm hover:shadow-md transition-shadow duration-300"
-              >
-                <CardHeader className="flex items-center gap-3">
-                  <s.icon className={`h-6 w-6 ${s.color}`} />
-                  <CardTitle className="text-base font-semibold">
-                    {s.title}
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="text-2xl font-semibold mb-1">{s.value}</div>
-                  <p className="text-sm text-slate-600">{s.sub}</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </section>
+        {/* Top Cards */}
+        <div className="grid md:grid-cols-3 gap-6">
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex justify-between">
+                License Status <span>⚡ Auto</span>
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-semibold">Active</div>
+              <p className="text-sm text-slate-600">Renewal May 2026</p>
+            </CardContent>
+          </Card>
 
-        {/* Section 2: CME Chart */}
-        <section className="space-y-6">
-          <h2 className="text-lg font-semibold text-slate-800 border-b border-slate-200 pb-1">
-            CME Progress by Specialty
-          </h2>
-          <Card className="shadow-sm">
-            <CardContent className="h-80 pt-6">
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex justify-between">
+                MQSA Compliance <span>⚡ Auto</span>
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-semibold">88% Complete</div>
+              <p className="text-sm text-slate-600">(44 / 50 CME) • Audit Mar 2025</p>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex justify-between">
+                Required CMEs <span>⚙️ Semi-auto</span>
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-slate-700">State of Massachusetts</p>
+              <p className="text-sm text-slate-600">15 CME credits / year</p>
+            </CardContent>
+          </Card>
+        </div>
+
+        {/* Middle Row */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <Card className="lg:col-span-1 md:col-span-2">
+            <CardHeader>
+              <CardTitle className="flex justify-between">
+                CME Progress <span>⚡ Auto</span>
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="h-72">
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart data={cmeData}>
                   <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
@@ -124,29 +116,65 @@ export default function Dashboard() {
               </ResponsiveContainer>
             </CardContent>
           </Card>
-        </section>
 
-        {/* Section 3: CME Recommendations */}
-        <section className="space-y-6">
-          <h2 className="text-lg font-semibold text-slate-800 border-b border-slate-200 pb-1">
-            Recommended CME Activities
-          </h2>
-          <Card className="shadow-sm">
-            <CardContent className="pt-6">
-              <ul className="space-y-4 text-sm text-slate-700">
-                <li>
-                  <b>Harvard CME:</b> Cardiometabolic Update (12 credits) — Boston, Mar 2025
-                </li>
-                <li>
-                  <b>NEJM Knowledge+:</b> Online Self-Assessment (8 credits) — Ongoing
-                </li>
-                <li>
-                  <b>Mayo Clinic:</b> Hospital Medicine Essentials (10 credits) — Phoenix, Jun 2025
-                </li>
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex justify-between">
+                Medical Societies <span>🖐️ Manual</span>
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p>The American College of Radiology</p>
+              <p className="text-sm text-slate-600">
+                Expiration: Apr 2025 • Annual dues: $500
+              </p>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex justify-between">
+                CME Funding <span>🖐️ Manual</span>
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-lg font-semibold">$2,500</p>
+              <p className="text-sm text-slate-600">
+                $850 utilized • $1,650 available • Expires Dec 2025
+              </p>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex justify-between">
+                Document Vault <span>⚙️ Semi-auto</span>
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <ul className="text-sm text-indigo-700 space-y-1">
+                <li>Upload New Document</li>
+                <li>License Renewal Form.pdf</li>
+                <li>ACVR Certificate.pdf</li>
               </ul>
             </CardContent>
           </Card>
-        </section>
+
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex justify-between">
+                Integrated Boards <span>⚡ Auto</span>
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <ul className="text-sm text-slate-700 space-y-1">
+                <li>Federation of State Medical Boards (FSMB)</li>
+                <li>AMA Physician Masterfile</li>
+                <li>CAQH ProView</li>
+              </ul>
+            </CardContent>
+          </Card>
+        </div>
       </div>
     </div>
   );
